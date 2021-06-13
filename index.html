@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            color: white;
+            text-decoration: none; 
+        }
+        header{
+            width: 1500px;
+            height: 80px;
+            margin:0 auto;
+            background-color: black;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        header div{
+            margin-right: 0;
+            height: 50px;
+            line-height: 50px;
+        }
+        #btn{
+            font-size: 10px;
+        }
+        header div a:hover{
+            color: yellow;
+        }
+        .song{
+            width: 1300px;
+            margin: 0 auto;;
+            height: 800px;
+            display: flex;
+        }
+        .lyrics{
+            width: 720px;
+            height: 720px;
+            padding: 40px;
+            text-align: center;
+        }
+        .message{
+            height: 160px;
+            line-height: 30 px;
+            border-bottom: 2px solid saddlebrown;
+        }
+        .name{
+            font-size: 40px;
+            font-weight: bold;
+            padding: 20px;
+        }
+        .message a{
+            color: sandybrown;
+        }
+        .lyric{
+            height: 540px;
+            margin: 20px;
+            line-height: 30px;
+            overflow: auto;
+        }
+        .player{
+            width: 420px;
+            padding: 80px 40px;
+        }
+        .cover{
+            width: 300px;
+            height:300px;
+            margin: 0 auto;
+            border: 3px solid white;
+            border-radius: 50%;
+            box-shadow: 0px 0px 5px gray;
+            background-image: url(./images/cover.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            animation: turn 5s linear infinite;
+        }
+        @keyframes turn{
+            0%{-webkit-transform:rotate(0deg);}
+            25%{-webkit-transform:rotate(90deg);}
+            50%{-webkit-transform:rotate(180deg);}
+            75%{-webkit-transform:rotate(270deg);}
+            100%{-webkit-transform:rotate(360deg);}
+        }   
+   
+        .process{
+            width: 420px;
+            height: 50px;
+            line-height: 50px;
+            margin-top: 80px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        
+        .play{
+            width: 40px;
+            height: 40px;
+            background: url(images/player.jpg) -110px 0;
+            background-repeat: no-repeat;
+        }
+        .stop{
+            width: 40px;
+            height: 40px;
+            background: url(./images/player.jpg) -207px 0;
+            background-repeat: no-repeat;
+        }
+        #prograssBar {
+            float: left;
+            position: relative;
+            width: 280px;
+            height: 4px;
+            background-color: green;
+            display: inline;
+        }
+        .prograssBar {
+            width: 0px;
+            height: 4px;
+            background: #2d30ff;
+        }
+        #bufBar {
+            width: 0px;
+            height: 4px;
+            background-color: greenyellow;
+            }
+        #processBtn {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: hotpink;
+            position: absolute;
+            left:-3px;
+            top: -3px;
+        }
+        #mute{
+            width: 25px;
+            height: 20px;
+            background:url(images/player.jpg) -40px 0;
+            background-repeat: no-repeat;
+        }
+        #downLoad{
+            width: 200px;
+            height: 40px;
+            line-height: 40px;
+            margin: 80px auto;
+            background:url(images/player.jpg) 0 -48px;
+            background-repeat: no-repeat;
+            text-align: center;
+        }
+        .downLoad{
+            width: 18px;
+            height: 18px;
+            background: url(images/player.jpg) 0px 0px;
+            background-repeat: no-repeat;
+            display: inline-block;
+        }
+        .remarks{
+            width: 1300px;
+            height: 900px;
+            margin: 0 auto;
+            border:1px solid red;
+        }
+        .remark_P{
+            width: 1080px;
+            height: 30px;
+            line-height: 50px;
+            padding: 10px;
+            margin: 0 auto;
+            border-bottom: 1px solid gray;
+        }
+        #sendBox{
+            width: 1100px;
+            height: 250px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        #face{
+            width: 100px;
+            height: 100px;
+        }
+        #remarkBox{
+            width: 960px;
+            height: 200px;
+            margin-left: 30px;
+            border: 1px solid black;
+        }
+        .btnBox{
+            display: flex;
+            justify-content: flex-end;
+            padding: 5px;
+        }
+        #sendBtn{
+            width: 100px;
+            height: 30px;
+            background-color: orange;
+        }
+        .remarkPosition{
+            position: relative;
+            width: 800px;
+            height: 303px;
+            overflow: hidden; 
+            margin: 30px auto;
+        }
+        #remarkList{
+            height: 303px;
+            position: absolute;           
+        }
+        .remarkNode{
+            width: 800px;
+            height: 100px;
+            border-bottom: 1px solid gray;
+            display: inline-flex;
+        }
+        .faceImg{
+            width: 80px;
+            height: 80px;
+            background-image: url(./images/face.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .content{
+            width: 660px;
+            height: 100px;
+            padding: 0px 20px;
+        }
+        .myname{
+            height: 20px;
+            color: rgb(255, 153, 0);
+        }
+        .content_p{
+            height: 40px;
+        }
+        .pages{
+            margin: 0 auto;
+            width: 600px;
+            list-style:none;
+            display:flex;
+            justify-content: space-around;
+        }
+        .pages li{
+            width: 30px;
+            height: 25px;
+            line-height: 1.5;
+            border-radius: 50%;
+            text-align: center;
+            background: violet;
+        }
+        li.prev,li.next{
+            width: 70px;
+            border-radius: 25%;
+        }
+        .pages a{
+            color: teal;
+            
+        }
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div><img src="./images/sign.jpg" alt="" class="sign"/></div>
+        <div><a href="#">首页</a></div>
+        <div><a href="#">榜单</a></div>
+        <div><a href="#">歌手</a></div>
+        <div><a href="#">下载酷我客户端</a></div>
+        <div id="btn"><canvas class="btn" width="25" height="25" ></canvas><a href="#">美女秀</a></div>
+        <div id="btn"><canvas class="btn" width="25" height="25" ></canvas><a href="#">酷我耳机</a></div>
+        <div id="btn"><canvas class="btn" width="25" height="25" ></canvas><a href="#">VIP会员</a></div>
+        <div id="btn"><canvas class="btn" width="25" height="25" ></canvas><a href="#">i听</a></div>
+        <div><a href="#">更多服务</a></div>
+        <div><a href="#">登录</a></div>
+        <div class="more"><a href="#">^<img src="./images/search.png" alt=""></a></div>
+    </header>
+    <div class="song">
+        <div class="lyrics">
+            <div class="message">
+                <p class="name">喜羊羊</p>
+                <p>专辑：<a href="#">儿歌大全    </a>歌手：<a href="#">华语群星    </a><a href="#">分享    </a><img src="./images/conment.jpg" alt=""><a href="#">评论</a></p>
+                <p>上传时间：2015-10-02 歌曲来源：民大相思湖网球社</p>
+            </div>
+            <div class="lyric">
+                <P>喜羊羊，美羊羊，懒羊羊，沸羊羊</P>
+                <P>慢羊羊，软绵绵，红太狼，灰太狼</P>
+                <P>别看我只是一只羊</P>
+                <P>绿草因为我变得更香</P>
+                <P>天空因为我变得更蓝</P>
+                <P>白云因为我变得柔软</P>
+                <P>别看我只是一只羊</P>
+                <P>羊儿的聪明难以想象</P>
+                <P>天再高心情一样奔放</P>
+                <P>每天都追赶太阳</P>
+                <p>有什么难题去牵绊我都不会去心伤</p>
+                <p>有什么危险在我面前也不会去慌乱</p>
+                <p>就算有狼群把我追捕，也当作游戏一场</p>
+                <p>在什么时间都爱开心，笑容都会飞翔</p>
+                <p>就算会摔倒站得起来，永远不会沮丧</p>
+                <p>在所有天气，拥有叫人大笑的力量</p>
+                <p>虽然我只是羊</p>
+                <P>喜羊羊，美羊羊，懒羊羊，沸羊羊</P>
+                <P>慢羊羊，软绵绵，红太狼，灰太狼</P>
+                <P>别看我只是一只羊</P>
+                <P>绿草因为我变得更香</P>
+                <P>天空因为我变得更蓝</P>
+                <P>白云因为我变得柔软</P>
+                <P>别看我只是一只羊</P>
+                <P>羊儿的聪明难以想象</P>
+                <P>天再高心情一样奔放</P>
+                <P>每天都追赶太阳</P>
+                <p>有什么难题去牵绊我都不会去心伤</p>
+                <p>有什么危险在我面前也不会去慌乱</p>
+                <p>就算有狼群把我追捕，也当作游戏一场</p>
+                <p>在什么时间都爱开心，笑容都会飞翔</p>
+                <p>就算会摔倒站得起来，永远不会沮丧</p>
+                <p>在所有天气，拥有叫人大笑的力量</p>
+                <p>虽然我只是羊，虽然我只是羊</p>
+                <P>喜羊羊，美羊羊，懒羊羊，沸羊羊</P>
+                <P>慢羊羊，软绵绵，红太狼，灰太狼</P>
+                <p>啦啦啦啦</p>
+            </div>
+
+        </div>
+        <div class="player">
+            <audio autoplay="autoplay" id="mymusic">
+                <source src="./images/别看我只是一只羊.mp3" type="audio/mp3">
+            </audio>
+            <div class="cover">
+                <canvas id="cover" width="300" height="300"></canvas>
+            </div>
+            <div class="process">
+                <div id="playBtn" class="play"></div>
+                <div id="prograssBar">
+                    <div id="bufBar">
+                        <div class="prograssBar" id="wp_processBar"></div>
+                        <a href="##" id="processBtn" ></a>
+                    </div>
+                </div>
+                <div id="playTime">00.00</div>
+                <div id="mute"></div>
+            </div>
+            <div id="downLoad">
+                <div class="downLoad"></div>
+                <a href="#">免费下载这首歌</a>
+            </div>
+        </div>
+    </div>
+    <div class="remarks">
+        <p class="remark_P">评论  <span id="remarkCount"></span>条评论</p>
+        <div id="sendBox">
+            <img src="./images/face.jpg" alt="" id="face">
+            <input type="text" value="" id="remarkBox">
+            <div class="btnBox">    
+                <div id="count_P">已输入<span id="count"></span>字</div>
+                <button id="sendBtn">评论</button>
+            </div>
+        </div>
+        <p class="remark_P">精彩评论</p>
+        <div class="remarkPosition">
+            <div id="remarkList">
+                <div></div>
+            </div>
+        </div>
+        <div class="pages">
+            <li class="prev">Previous</li>
+        　　<li>1</li>
+        　　<li>2</li>
+        　　<li>3</li>
+        　　<li>4</li>
+        　　<li>5</li>
+        　　<li>6</li>
+        　　<li>7</li>
+        　　<li class="next">Next</li>
+        </div>
+        
+
+    </div>
+    
+    <script>
+        
+        window.onload =function(){
+            //导航栏 小字前的图标
+            for(let i=0; i<4; i++){
+                let btn = document.getElementsByClassName("btn")[i];
+                let ctx = btn.getContext("2d");
+                let img = new Image();
+                img.src="./images/btn.png";
+                img.onload=function(){
+                    ctx.drawImage(img,228,20,20,20,0,0,25,25);
+                }
+            }
+
+            //一直旋转的专辑封面
+
+            var cover =  document.getElementById("cover");
+            var context = cover.getContext("2d");
+            context.translate(150,150);
+            
+            context.beginPath()
+            context.arc(0,0,25,0,2*Math.PI);
+            context.closePath();
+            context.fillStyle="rgba(255,255,255,0.4)";
+            context.fill();
+
+            context.beginPath()
+            context.arc(0,0,6,0,2*Math.PI);
+            context.fillStyle="white";
+            context.fill();
+            context.closePath();
+            //本地评论
+            getNotes();
+
+            
+        }
+        //播放器
+        var mymusic = document.getElementById("mymusic");
+        var playBtn = document.getElementById("playBtn");
+        var playTime = document.getElementById("playTime");
+        var prograssBar = document.getElementById("wp_processBar");
+        var schedule_btn = document.getElementById("processBtn");
+        var sound = document.getElementById("mute");
+
+        //获取当前播放时间并设置好格式
+        function getNowtime() {
+        timeId = setInterval(()=>{
+            currentMinute = parseInt(mymusic.currentTime/60);
+            currentMinute=currentMinute>9?currentMinute:"0"+currentMinute;
+            currentSecond = parseInt(mymusic.currentTime-currentMinute*60);
+            currentSecond=currentSecond>9?currentSecond:"0"+currentSecond;
+            playTime.innerHTML = currentMinute+":"+currentSecond;
+            }, 1000);   
+        }
+        //进度条随播放时长自动向右
+        function prograss(){
+        prograssId = setInterval(() => {
+            schedule_btn.style.left=mymusic.currentTime/mymusic.duration*280-3+"px";
+            prograssBar.style.width=mymusic.currentTime/mymusic.duration*280+"px";
+        }, 10);
+        }
+        //点击播放/暂停
+        var playKey = 0;
+        playBtn.onclick = function(){
+        if(playKey==0){
+            playBtn.className="stop";
+            mymusic.play();
+            playKey++;
+            getNowtime();
+            prograss();
+        }else{
+            playBtn.className="play";
+            mymusic.pause();
+            playKey--;
+            clearInterval(timeId);
+            clearInterval(prograssId);
+            }
+        }
+       //点击静音
+        var volKey = 0;
+        sound.onclick = function(){
+        if(volKey==0){
+            mymusic.muted = true;
+            volKey++;
+        }else{
+            mymusic.muted = false;
+            volKey--;
+        }
+    }  
+        
+        //存储评论
+        //saveNote()把数据存储到本地存储中
+        function saveNote(){
+            var message = localStorage['message'];
+            if(message == null || message ==""){
+                message = '[]';
+            }
+            message = JSON.parse(message);
+            var noteObj = {
+                timer: time,
+                remark: remark,
+                name:myname
+            }
+            message.push(noteObj);
+            message = JSON.stringify(message);
+            localStorage["message"] = message;
+        }
+        //从本地存储中获得已保存的评论
+        function getNotes() {
+            var message = localStorage["message"];
+            message = JSON.parse(message);
+            for(let i=0;i<message.length;i++){
+                var remarkNode = document.createElement("div");
+                remarkNode.className="remarkNode";
+                var theFirst = remarkList.childNodes[0];
+                remarkList.insertBefore(remarkNode,theFirst);
+                var imgNode = document.createElement("div");
+                imgNode.className="faceImg";
+                remarkNode.appendChild(imgNode);
+                var content = document.createElement("div");
+                content.className="content"
+                remarkNode.appendChild(content);
+                var name_p = document.createElement("p");
+                name_p.className="myname";
+                name_p.innerHTML=message[i]["name"];
+                content.appendChild(name_p);
+                var content_p = document.createElement("p");
+                remark =document.getElementById("remarkBox").value;
+                document.getElementById("remarkBox").value="";
+                content_p.className="content_p";
+                content_p.innerHTML=message[i]["remark"];
+                content.appendChild(content_p);
+                var timer = document.createElement("p");
+                timer.className="timer";
+                timer.innerHTML=message[i]["timer"];
+                content.appendChild(timer);
+            }
+        }
+        //日期格式化输出
+        Date.prototype.format = function (fmt) {
+            var o = {
+                "M+": this.getMonth() + 1, //月份
+                "d+": this.getDate(), //日
+                "h+": this.getHours(), //小时
+                "m+": this.getMinutes(), //分
+                "s+": this.getSeconds(),//秒
+            };
+            if (/(y+)/.test(fmt)) {
+                fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            }
+            for (var k in o) {
+                if (new RegExp("(" + k + ")").test(fmt)) {
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+                }
+            }
+            return fmt;
+        }
+        
+        var myname = "Hou Xiaorong";
+        var remarkList = document.getElementById("remarkList");
+        sendBtn.onclick = function(){
+            var remarkNode = document.createElement("div");
+            remarkNode.className="remarkNode";
+            var theFirst = remarkList.childNodes[0];
+            remarkList.insertBefore(remarkNode,theFirst);
+            var imgNode = document.createElement("div");
+            imgNode.className="faceImg";
+            remarkNode.appendChild(imgNode);
+            var content = document.createElement("div");
+            remark =document.getElementById("remarkBox").value;
+            document.getElementById("remarkBox").value="";
+            console.log(remark);
+            content.className="content"
+            remarkNode.appendChild(content);
+            var name_p = document.createElement("p");
+            name_p.className="myname";
+            name_p.innerHTML=myname;
+            content.appendChild(name_p);
+            var content_p = document.createElement("p");
+            content_p.className="content_p";
+            content_p.innerHTML=remark;
+            content.appendChild(content_p);
+            var timer = document.createElement("p");
+            timer.className="timer";
+            var date = new Date();
+            time = date.format("yyyy-MM-dd hh:mm:ss");
+            timer.innerHTML=time;
+            content.appendChild(timer);
+            saveNote();
+        }
+        
+        //分页效果
+        var li = document.getElementsByTagName("li")
+        for(let i=1;i<li.length-1;i++){
+            var page = document.getElementsByTagName("li")[i];
+            page.onclick = function(){
+                var top = -(i-1)*303;
+                remarkList.style.top=top+"px";
+                console.log(top);
+            }
+        }
+        //上一页
+        var prv = document.getElementsByTagName("li")[0];
+        prv.onclick = function(){
+                var top = parseInt(remarkList.style.top)+303;
+                if(top>0){
+                    alert("没有更多的评论了")
+                }
+                else{
+                    remarkList.style.top=top+"px";
+                }
+                console.log(top);
+        }
+        //下一页
+        var k=li.length-1;
+        var next = document.getElementsByTagName("li")[k];
+        next.onclick = function(){
+            var top = parseInt(remarkList.style.top)-303;
+            remarkList.style.top=top+"px";
+        }
+    </script>
+    
+</body>
+</html>
